@@ -1,0 +1,44 @@
+package com.eastmoney;
+
+/**
+ * @author: ThinkingLee
+ * @date: 2020/11/4
+ * @desc: 量化函数枚举
+ */
+public enum FunctionEnum {
+
+    START("START"),
+    STOP("STOP"),
+    MA("MA"),
+    CSD("CSD"),
+    CSS("CSS"),
+    TD("TD"),
+    GD("GD"),
+    SEC("SEC"),
+    CSQ("CSQ"),
+    CMC("CMC"),
+    CST("CST"),
+    CTR("CTR"),
+    CT("CT"),
+    CPS("CPS"),
+    PGROUP("PGROUP"),
+    EDB("EDB"),
+    TDN("TDN"),
+    CFN("CFN"),
+    CFNQ("CFNQ"),
+    CNQ("CNQ");
+
+    private String functionName;
+
+    FunctionEnum(String functionName) {
+        this.functionName = functionName;
+    }
+
+    public String getFunctionName() {
+        return functionName;
+    }
+
+    public void setFunctionName(String functionName) {
+        this.functionName = functionName;
+    }
+}

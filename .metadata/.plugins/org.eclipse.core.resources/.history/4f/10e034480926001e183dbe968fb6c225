@@ -1,0 +1,968 @@
+package calculator;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+public class TshapedPileCalculation extends JFrame implements ActionListener {
+
+	private JTextField  textField1, textField2, textField3, textField4,
+			textField5, textField6, textField7, textField8, textField9, 
+			textField10, textField11, textField12,textField13, textField14,
+			textField15, textField16, textField17, textField18, textField19, 
+			textField20, textField21, textField22, textField23,textField24,
+			textFielda1,textFielda2, textFielda3, textFielda4, textFielda5,
+			textFielda, textFieldb, textFieldc, textFieldd;
+	private JButton calculateButton, clearButton, changeButton;
+
+	public TshapedPileCalculation() {
+
+		setTitle("直埋供热管道T型固定墩计算程序-屈夏霞");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(700, 900);
+		// 设置框架为组件居中对齐的FlowLayout布局，并且组件的水平间距为10像素，垂直间距为20像素。
+		setLayout(new FlowLayout(1, 10, 20));
+		setLocationRelativeTo(null);
+		setResizable(false);
+
+		Color color = new Color(143, 188, 143); // RGB 颜色值 输入字符背景设置为淡绿
+		Color color2 = new Color(220, 220, 220); // 控制板背景颜色设置为淡灰色
+
+		// 首先定义输入框的4个垂直BOX，还有一个主要的BOX
+		Box box, box0, box1, box2, box3, box4, box5;
+		Box texta1, textb, textc, textd, text1, text2, text3, text4, text5, text6, text7, text8, text9, text10;
+
+		box = Box.createVerticalBox();// 主要的box,存放所有控件
+		box0 = Box.createVerticalBox();
+		box1 = Box.createHorizontalBox();// 存放输入几何尺寸，水平
+		box2 = Box.createHorizontalBox();// 存放计算参数
+		box3 = Box.createHorizontalBox();// 存放计算结果，水平
+		box4 = Box.createHorizontalBox();// 存放计算按钮
+		box5 = Box.createHorizontalBox();// 存放图片
+		box1.setAlignmentY(Component.CENTER_ALIGNMENT);
+		box2.setAlignmentY(Component.CENTER_ALIGNMENT);
+		box1.setBorder(BorderFactory.createTitledBorder("输入固定墩几何参数")); // 容器的标题
+		box2.setBorder(BorderFactory.createTitledBorder("输入必要计算参数"));
+		box3.setBorder(BorderFactory.createTitledBorder("结果输出"));
+		Border border = BorderFactory.createEtchedBorder();
+		border = new CustomTitledBorder(border, "计算操作", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION);
+		box4.setBorder(border);		
+		box5.setBorder(BorderFactory.createTitledBorder("计算图像"));
+//        // 创建一个新的TitledBorder并为边框对象设置标题
+//        TitledBorder titledBorder = BorderFactory.createTitledBorder(border, "结果输出");
+//        titledBorder.setTitleJustification(TitledBorder.CENTER);
+//        titledBorder.setTitlePosition(TitledBorder.DEFAULT_POSITION);
+//        // 将边框对象应用到相关的组件上
+//        box4.setBorder(titledBorder);
+//		box4.setBorder(BorderFactory.createTitledBorder("结果输出"));
+
+
+		/*
+		 * texta1 = Box.createHorizontalBox();// 水平 textb = Box.createHorizontalBox();//
+		 * 垂直 textc = Box.createHorizontalBox(); textd = Box.createHorizontalBox();
+		 * 
+		 * texta1.add(new JLabel("测试按钮展示A(m):")); textFielda = new JTextField();
+		 * textFielda.setPreferredSize(new Dimension(10, 5));
+		 * textFielda.setBackground(color); texta1.add(textFielda); texta1.add(new
+		 * JLabel("测试按钮展示2A(m):")); textFieldb = new JTextField();
+		 * textFieldb.setPreferredSize(new Dimension(10, 5));
+		 * textFieldb.setBackground(color); texta1.add(textFieldb);
+		 * 
+		 * textb.add(new JLabel("管心到墩顶距离H3(m):")); textFielda = new JTextField();
+		 * textFielda.setPreferredSize(new Dimension(10, 5));
+		 * textFielda.setBackground(color); textb.add(textFielda); textb.add(new
+		 * JLabel("管心到墩顶距离H3(m):")); textFieldb = new JTextField();
+		 * textFieldb.setPreferredSize(new Dimension(10, 5));
+		 * textFieldb.setBackground(color); textb.add(textFieldb);
+		 * 
+		 * textc.add(new JLabel("底板厚度H1(m):")); textFielda = new JTextField();
+		 * textFielda.setPreferredSize(new Dimension(10, 5));
+		 * textFielda.setBackground(color); textc.add(textFielda); textc.add(new
+		 * JLabel("底板厚度H1(m):")); textFieldb = new JTextField();
+		 * textFieldb.setPreferredSize(new Dimension(10, 5));
+		 * textFieldb.setBackground(color); textc.add(textFieldb);
+		 * 
+		 * box0.add(texta1); box0.add(textb); box0.add(textc); box.add(box0);
+		 */
+
+		// 存放输入几何尺寸
+		text1 = Box.createVerticalBox();// 垂直
+		text2 = Box.createVerticalBox();// 垂直
+		text3 = Box.createVerticalBox();
+		text4 = Box.createVerticalBox();
+		text5 = Box.createVerticalBox();
+		text6 = Box.createVerticalBox();
+		text7 = Box.createVerticalBox();
+		text8 = Box.createVerticalBox();
+		text9 = Box.createVerticalBox();
+		text10 = Box.createVerticalBox();
+
+		JLabel label, label1, label2, label3, label4, label5, label6, label7, label8, label9,
+		labela, labelb, labelc, labeld, labele, labelf, labelg, labelh, labeli, labelj,labelk,labell;
+//		  label = new JLabel("固定墩宽度A(m):",JLabel.RIGHT);
+//		  label.setVerticalAlignment(JLabel.TOP); 
+//		  label.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+//		  label.setPreferredSize(new Dimension(10, 5));
+//		  label.setForeground(new Color(120, 90, 40)); 
+//		  label.setBackground(new Color(100, 20, 70)); 
+//		  Border border2 =BorderFactory.createLineBorder(Color.ORANGE);
+//		  label.setBorder(border2);
+//		  text1.add(label);
+		 
+		label = new JLabel("固定墩宽度A(m):",JLabel.CENTER);
+		label.setVerticalAlignment(JLabel.TOP); 
+		label.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text1.add(label);
+		// text1.add(new JLabel("固定墩底板长度B(m):"));
+		label1 = new JLabel("固定墩底板长度B(m):",JLabel.CENTER);
+		label1.setVerticalAlignment(JLabel.TOP); 
+		label1.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		//label1.setPreferredSize(new Dimension(150, 10));
+		text1.add(label1);
+		label2 = new JLabel("固定墩厚度D(m):",JLabel.CENTER);
+		label2.setVerticalAlignment(JLabel.TOP); 
+		//label2.setPreferredSize(new Dimension(150, 10));
+		label2.setFont(new Font("UTF-8", Font.PLAIN, 15));
+		text1.add(label2);
+		label3 = new JLabel("底板厚度H1(m):",JLabel.CENTER);
+		label3.setVerticalAlignment(JLabel.TOP); 
+		//label3.setPreferredSize(new Dimension(150, 10));
+		label3.setFont(new Font("UTF-8", Font.PLAIN, 15));
+		text1.add(label3);
+		label4 = new JLabel("管心到底板顶距离H2(m):",JLabel.CENTER);
+		label4.setVerticalAlignment(JLabel.TOP); 
+		//label4.setPreferredSize(new Dimension(150, 10));
+		label4.setFont(new Font("UTF-8", Font.PLAIN, 15));
+		text1.add(label4);
+		label5 = new JLabel("管心到墩顶距离H3(m):",JLabel.CENTER);
+		//label5.setPreferredSize(new Dimension(150, 10));
+		label5.setVerticalAlignment(JLabel.TOP); 
+		label5.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text1.add(label5);
+		text1.setBorder(new EmptyBorder(0, 10, 3, 0));
+		
+//		text1.add(new JLabel("固定墩宽度A(m):"));
+//		text1.add(new JLabel("固定墩底板长度B(m):"));
+//		text1.add(new JLabel("固定墩厚度D(m):"));
+//		text1.add(new JLabel("底板厚度H1(m):"));
+//		text1.add(new JLabel("管心到底板顶距离H2(m):"));
+//		text1.add(new JLabel("管心到墩顶距离H3(m):"));
+		textField1 = new JTextField();
+		//textField1.setPreferredSize(new Dimension(50, 20));
+		textField1.setBackground(color);
+		textField2 = new JTextField();
+		//textField2.setPreferredSize(new Dimension(50, 20));
+		textField2.setBackground(color);
+		textField3 = new JTextField();
+		//textField3.setPreferredSize(new Dimension(50, 20));
+		textField3.setBackground(color);
+		textField4 = new JTextField();
+		//textField4.setPreferredSize(new Dimension(50, 20));
+		textField4.setBackground(color);
+		textField10 = new JTextField();
+		//textField10.setPreferredSize(new Dimension(50, 20));
+		textField10.setBackground(color);
+		textField11 = new JTextField();
+		//textField11.setPreferredSize(new Dimension(50, 10));
+		textField11.setBackground(color);
+		text2.add(textField1);
+		text2.add(textField2);
+		text2.add(textField3);
+		text2.add(textField4);
+		text2.add(textField10);
+		text2.add(textField11);
+		
+		label6 = new JLabel("刃脚高度H0(m):",JLabel.CENTER);
+		//label6.setVerticalAlignment(JLabel.TOP); 
+		label6.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text3.add(label6);
+		label6.setBorder(new EmptyBorder(-3, 0, 2, 0));
+		label7 = new JLabel("管道中心距C(m):",JLabel.CENTER);
+		//label7.setVerticalAlignment(JLabel.TOP); 
+		label7.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text3.add(label7);
+		label7.setBorder(new EmptyBorder(2, 0, 1, 0));
+		label8 = new JLabel("管顶覆土厚度h1(m):",JLabel.CENTER);
+		//label8.setVerticalAlignment(JLabel.TOP); 
+		label8.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text3.add(label8);
+		label8.setBorder(new EmptyBorder(2, 0, 1, 0));
+		label9 = new JLabel("保温管外径Φ(m):",JLabel.CENTER);
+		//label9.setVerticalAlignment(JLabel.TOP); 
+		label9.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text3.add(label9);
+		label9.setBorder(new EmptyBorder(2, 0, 3, 0));
+		labela = new JLabel("钢管直径d(mm):      ",JLabel.CENTER);
+		//labela.setVerticalAlignment(JLabel.TOP); 
+		labela.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text3.add(labela);
+		//text3.add(Box.createVerticalStrut(15));// 设置中间距离
+		
+//		text3.add(new JLabel("刃脚高度H0(m):"));
+//		text3.add(new JLabel("管道中心距C(m):"));
+//		text3.add(new JLabel("管顶覆土厚度h1(m):"));
+//		text3.add(new JLabel("保温管外径Φ(m):"));
+//		text3.add(new JLabel("钢管直径d(mm):"));
+		textField5 = new JTextField();
+		textField5.setPreferredSize(new Dimension(2, 0));
+		//textField5.setSize(10, 3);
+		textField5.setBackground(color);
+		textField6 = new JTextField();
+		textField6.setPreferredSize(new Dimension(2, 0));
+		textField6.setBackground(color);
+		textField7 = new JTextField();
+		textField7.setPreferredSize(new Dimension(2, 0));
+		textField7.setBackground(color);
+		textField8 = new JTextField();
+		textField8.setPreferredSize(new Dimension(2, 0));
+		textField8.setBackground(color);
+		textFielda1 = new JTextField();
+		//textFielda1.setVisible(false);
+		textFielda1.setPreferredSize(new Dimension(2, 0));
+		textFielda1.setBackground(color);
+		
+		//JTextField textFielda11 = new JTextField();
+		//textFielda11.setVisible(false);
+		//textFielda11.setPreferredSize(new Dimension(50, 5));
+		//textFielda11.setBackground(color);
+		//JTextField textFielda12 = new JTextField();
+		//textFielda12.setVisible(false);
+		//textFielda12.setPreferredSize(new Dimension(50, 5));
+		//textFielda12.setBackground(color);
+		//text4.add(textFielda12);
+		text4.add(textField5);
+		text4.add(textField6);
+		text4.add(textField7);
+		text4.add(textField8);
+		text4.add(textFielda1);
+		//text4.add(textFielda11);
+		text4.setBorder(new EmptyBorder(0, 0, 3, 10));
+		
+		//text1.setPreferredSize(new Dimension(170,0));
+		box1.add(text1);		
+		box1.add(Box.createHorizontalStrut(20));
+		text2.setPreferredSize(new Dimension(8, 0));
+		box1.add(text2);		
+		box1.add(Box.createHorizontalStrut(30));// 设置中间距离
+		text3.setPreferredSize(new Dimension(190,0));
+		box1.add(text3);
+		box1.add(Box.createHorizontalStrut(20));
+		//text4.setPreferredSize(new Dimension(20, 0));
+		box1.add(text4);
+
+		
+		labelb = new JLabel("双管推力F(kN):",JLabel.CENTER); 
+		labelb.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		labelb.setBorder(new EmptyBorder(2, 0, 1, 0));
+		text7.add(labelb);
+		
+		labelc = new JLabel("环板宽度b(mm):",JLabel.CENTER); 
+		labelc.setFont(new Font("UTF-8", Font.PLAIN, 15));
+		labelc.setBorder(new EmptyBorder(1, 0, 1, 0));
+		text7.add(labelc);
+		
+		labeld = new JLabel("回填土内摩擦角φº:",JLabel.CENTER);
+		//label6.setVerticalAlignment(JLabel.TOP); 
+		labeld.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text7.add(labeld);
+		labeld.setBorder(new EmptyBorder(1, 0, 1, 0));
+		labele = new JLabel("回填土容重γs(kN/m³):",JLabel.CENTER);
+		//label7.setVerticalAlignment(JLabel.TOP); 
+		labele.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text7.add(labele);
+		labele.setBorder(new EmptyBorder(1, 0, 1, 0));
+		labelf = new JLabel("被动土压力折减系数k:",JLabel.CENTER);
+		//label6.setVerticalAlignment(JLabel.TOP); 
+		labelf.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text7.add(labelf);
+		labelf.setBorder(new EmptyBorder(1, 0, 1, 0));
+		labelg = new JLabel("土与墩体的摩擦系数μ:",JLabel.CENTER);
+		//label7.setVerticalAlignment(JLabel.TOP); 
+		labelg.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		text7.add(labelg);
+		labelg.setBorder(new EmptyBorder(1, 0, 2, 0));
+		text7.setBorder(new EmptyBorder(0, 10, 3, 0));
+		
+	
+		// 存放计算参数
+//		text7.add(new JLabel("双管推力F(kN):"));
+//		text7.add(new JLabel("环板宽度b(mm):"));
+//		text7.add(new JLabel("回填土内摩擦角φº:"));
+//		text7.add(new JLabel("回填土容重γs(kN/m³):"));
+	//  label1a.setToolTipText("注：无位移取0.8-0.9，小位移取0.4-0.7");
+//		text7.add(new JLabel("被动土压力折减系数k:"));
+//		text7.add(new JLabel("土与墩体的摩擦系数μ:"));
+		textField9 = new JTextField();
+		textField9.setBackground(color);
+		textField13 = new JTextField();
+		textField13.setBackground(color);
+		textField13.setToolTipText("注：环板宽度一般取250mm");// 设置 JTextField 的提示信息
+		textField14 = new JTextField();
+		textField14.setBackground(color);
+		textField14.setToolTipText("注：砂土类内摩擦角为25º，粘土类内摩擦角为30º");// 设置 JTextField 的提示信息
+		textField15 = new JTextField();
+		textField15.setBackground(color);
+		textField16 = new JTextField();
+		textField16.setBackground(color);
+		textField16.setToolTipText("注：无位移取0.8-0.9，小位移取0.4-0.7");
+		textFielda2 = new JTextField();
+		textFielda2.setBackground(color);
+		textFielda2.setToolTipText("注：按照《城镇供热直埋热水管道技术规程》第6.2.2条取用");
+		text8.add(textField9);
+		text8.add(textField13);
+		text8.add(textField14);
+		text8.add(textField15);
+		text8.add(textField16);
+		text8.add(textFielda2);
+
+		labelh = new JLabel("混凝土容重γc(kN/m³):",JLabel.CENTER); 
+		labelh.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		labelh.setBorder(new EmptyBorder(-3, 0, 6, 0));
+		text9.add(labelh);
+		labeli = new JLabel("钢筋保护层厚度a(mm):",JLabel.CENTER); 
+		labeli.setFont(new Font("UTF-8", Font.PLAIN, 15));
+		labeli.setBorder(new EmptyBorder(2, 0, 5, 0));
+		text9.add(labeli);
+		labelj = new JLabel("砼轴拉强度设计值ft(N/mm²):",JLabel.CENTER); 
+		labelj.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		labelj.setBorder(new EmptyBorder(2, 0, 7, 0));
+		text9.add(labelj);
+		labelk = new JLabel("截面高度影响系数βh:",JLabel.CENTER); 
+		labelk.setFont(new Font("UTF-8", Font.PLAIN, 15));
+		labelk.setBorder(new EmptyBorder(1, 0, 7, 0));
+		text9.add(labelk);
+		labell = new JLabel("地基承载力特征值 (kPa):",JLabel.CENTER); 
+		labell.setFont(new Font("UTF-8", Font.PLAIN, 15)); 
+		labell.setBorder(new EmptyBorder(1, 0, 5, 0));
+		text9.add(labell);
+
+//		text9.add(new JLabel("混凝土容重γc(kN/m³):"));
+//		text9.add(new JLabel("钢筋保护层厚度a(mm):"));
+//		text9.add(new JLabel("砼轴拉强度设计值ft(N/mm²):"));
+		//text9.add(new JLabel("轴心抗拉强度设计值(N/mm2):"));
+		//JLabel label=new JLabel("<html><body><p align=\"center\">数据版本<br/>v1.0.0</p></body></html>");
+		//text9.add(new JLabel("<html><body><p align=\"center\">混凝土轴心抗拉<br/>强度设计值ft(N/mm2):</p></body></html>"));
+//		text9.add(new JLabel("截面高度影响系数βh:"));
+//		text9.add(new JLabel("地基承载力特征值 (kPa):"));
+		textField17 = new JTextField();
+		textField17.setBackground(color);
+		textField18 = new JTextField();
+		textField18.setBackground(color);
+		textField19 = new JTextField();
+		textField19.setBackground(color);
+		textField19.setToolTipText("注：C30混凝土，轴心抗拉强度为1.43；C35为1.57；C40为1.71");
+		textField20 = new JTextField();
+		textField20.setBackground(color);
+		textField20.setToolTipText("注：固定墩厚度≤800mm，取1.0；固定墩厚度≥2000mm，取0.9；其余线性内插");
+		textField12 = new JTextField();
+		textField12.setBackground(color);
+		text10.add(textField17);
+		text10.add(textField18);
+		text10.add(textField19);
+		text10.add(textField20);
+		text10.add(textField12);
+		text10.setBorder(new EmptyBorder(0, 0, 3, 10));
+		
+		box2.add(text7);
+		box2.add(Box.createHorizontalStrut(38));// 设置中间距离
+		text8.setPreferredSize(new Dimension(3, 0));	
+		box2.add(text8);
+		box2.add(Box.createHorizontalStrut(25));
+		text9.setPreferredSize(new Dimension(190, 0));
+		box2.add(text9);
+		box2.add(Box.createHorizontalStrut(20));
+		text10.setPreferredSize(new Dimension(5, 0));
+		box2.add(text10);
+
+		// 按钮的设置
+		calculateButton = new JButton("计算");
+		//calculateButton.setBorder(new EmptyBorder(15,0,0,15));
+		calculateButton.setBounds(10,5,20,10);
+		clearButton = new JButton("清空");
+		changeButton = new JButton("供热管道查表");
+		box4.setPreferredSize(new Dimension(400, 70));
+		
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.insets = new Insets(0, 50, 0, 50); // 设置左右边界距离
+//		box4.add(calculateButton, constraints);
+//		box4.add(changeButton, constraints);
+//		box4.add(clearButton, constraints);
+        //box4.setLayout(new FlowLayout(1, 10, 20));
+		//box4.setBorder(new EmptyBorder(5,0,0,5));
+        
+       
+        int spacing = 20; // 设置按钮与边界的间距
+        box4.add(Box.createHorizontalStrut(spacing));
+        box4.add(calculateButton);
+		box4.add(Box.createHorizontalStrut(50));// 设置按钮中间距离
+		box4.add(changeButton);
+		box4.add(Box.createHorizontalStrut(50));// 设置按钮中间距离
+		box4.add(clearButton);
+		box4.add(Box.createHorizontalStrut(spacing));
+		calculateButton.addActionListener(this);
+		clearButton.addActionListener(this);
+		// changeButton.addActionListener(this);
+
+		changeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 展示表格表格数据信息
+				new DemoDialog();
+
+			}
+		});
+
+		// 输出参数的设置
+		Box boxa;
+		Box texta;
+
+		boxa = Box.createVerticalBox();// 垂直
+		texta = Box.createVerticalBox();// 垂直
+
+		boxa.add(new JLabel("抗滑移验算结果:"));
+		boxa.add(new JLabel("抗倾覆验算结果:"));
+		boxa.add(new JLabel("固定墩抗冲切验算结果:"));
+		boxa.add(new JLabel("地基承载力验算结果:"));
+		textField21 = new JTextField();
+		texta.add(textField21);
+		textField22 = new JTextField();
+		texta.add(textField22);
+		textField23 = new JTextField();
+		texta.add(textField23);
+		textField24 = new JTextField();
+		texta.add(textField24);
+		boxa.setBorder(new EmptyBorder(0, 10, 0, 0));
+		box3.add(boxa);
+		box3.add(Box.createHorizontalStrut(20));
+		texta.setBorder(new EmptyBorder(0, 0, 0, 10));
+		box3.add(texta);
+
+		// 图片的设置
+		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/计算模型图.png"));
+
+//        Image image = imageIcon.getImage();
+//        // Calculate aspect ratio
+//        double imageAspectRatio = (double) image.getWidth(null) / image.getHeight(null);
+//        
+//        double boxAspectRatio = (double) box3.getWidth() / box3.getHeight();
+//        double scale = 1;
+//        if (imageAspectRatio > boxAspectRatio) {
+//            scale = (double) box3.getWidth() / image.getWidth(null);
+//        } else {
+//            scale = (double) box3.getHeight() / image.getHeight(null);
+//        }
+//        
+//        // Scale image
+//        int scaledWidth = (int) (image.getWidth(null) * scale);
+//        int scaledHeight = (int) (image.getHeight(null) * scale);
+//        Image scaledImage = image.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+//
+//        // Create scaled image icon
+//        ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+//
+//        // Create label and add to box
+//        JLabel labelImage = new JLabel(scaledImageIcon);
+//		
+
+		JLabel labelImage = new JLabel(imageIcon);
+		//labelImage.setPreferredSize(new Dimension(600, 300)); // 设置 JLabel 的大小
+		Image img = imageIcon.getImage();
+        img = img.getScaledInstance(400, 300, Image.SCALE_DEFAULT);
+        imageIcon.setImage(img);
+        labelImage.setIcon(imageIcon);
+        labelImage.setBorder(new EmptyBorder(10,15,15,15));
+		box5.add(labelImage);
+		// Box.createVerticalStrut(80)；
+		//box5.setBorder(new EmptyBorder(5,5,20,5));
+		
+		box.add(box1);
+		box.add(box2);
+		box.add(box3);
+		box.add(box4);
+		box.add(box5);
+		//box.add(box0);//添加一个隐藏的box
+
+		add(box);
+		setVisible(true);
+	}
+
+	// 实现 ActionListener 接口中的方法
+	public void actionPerformed(ActionEvent e) {
+		Color color = new Color(143, 188, 143);
+		  
+			
+		double A=0,B=0,D=0,H1=0,H2=0,H3=0;
+		double H0=0,C=0,h1=0,Φ1=0,d=0;
+		double F = 0,b = 0, φ = 0, γs = 0, k = 0, μ = 0;
+		double γc = 0, a = 0, ft = 0, βh = 0, Pk = 0;
+		if (e.getSource() == calculateButton) {
+			// 创建一个Map对象
+			Map<String, Object> myMap = new HashMap<>();
+			// 将变量作为值存储在Map中
+			String myVariable = "example";
+			myMap.put("key", myVariable);
+
+			/*
+			 * String A = textField1.getText(); // A：固定墩长度A (m)，单位：m² String T =
+			 * textField2.getText(); // 固定墩厚度T (m)；，单位：kN String H = textField3.getText();
+			 * // H：固定墩高度H (m)，单位：m String C = textField4.getText(); //管道中心距C (m)； String h1
+			 * =textField5.getText(); // h：管顶覆土厚度h (m)，单位：m String Φ1 =
+			 * textField6.getText(); // 保温管外径Φ (m)； String d = textField7.getText(); //
+			 * 回填土与固定墩的摩擦系数μ；，单位：无量纲 String b=textField8.getText() ;// 环板宽度b(mm)
+			 * (注：环板宽度一般取250mm)
+			 * 
+			 * String F = textField9.getText(); // 双管推力F (kN)； String φ =
+			 * textField13.getText(); // 回填土内摩擦角φ º；，单位：度 String γs =
+			 * textField14.getText();// γs：回填土容重γs (kN/m³)；，单位：kN/m³ String k =
+			 * textField15.getText(); // 被动土压力折减系数k (注：无位移取0.8-0.9，小位移取0.4-0.7)； String μ =
+			 * textField16.getText(); String γc = textField17.getText(); //混凝土容重γc (kN/m³)；
+			 * String a = textField18.getText(); String ft = textField19.getText(); String
+			 * βh = textField20.getText(); String Pk = textField12.getText();
+			 */
+
+			/*
+			 * myMap.put("A", A); myMap.put("T", T); myMap.put("H", H); myMap.put("C",
+			 * myVariable); myMap.put("h1", myVariable); myMap.put("Φ1", myVariable);
+			 * myMap.put("d", myVariable); myMap.put("b", myVariable); myMap.put("F",
+			 * myVariable); myMap.put("φ", myVariable); myMap.put("γs", myVariable);
+			 * myMap.put("k", myVariable); myMap.put("μ", myVariable); myMap.put("γc",
+			 * myVariable); myMap.put("a", myVariable); myMap.put("ft", myVariable);
+			 * myMap.put("βh", myVariable); myMap.put("Pk", myVariable);
+			 * 
+			 * boolean valid = true; // 1. 检查是否为空 for (Object value : myMap.values()) { if
+			 * (value == null) { valid = false; break; } } if (!valid) {
+			 * System.out.println("校验失败：参数不能为空！"); JOptionPane.showMessageDialog(this,
+			 * "参数不能为空"); return; } // 将数据类型参数转换成数字类型 for (Map.Entry<String, Object> entry :
+			 * myMap.entrySet()) { String key = entry.getKey(); Object value =
+			 * entry.getValue();
+			 * 
+			 * try { if (value instanceof Number) { // 如果参数本来就是数字类型，就不需要转换
+			 * System.out.println(key + ": " + value); } else { // 尝试将参数转换成数字类型 Number num =
+			 * getNumber(value); System.out.println(key + ": " + num); } } catch
+			 * (NumberFormatException ex) { // 处理转换异常
+			 * System.err.println("Invalid value for " + key + ": " + value);
+			 * JOptionPane.showMessageDialog(this, "参数必须为数字类型"); } } // 2. 检查是否为数字类型 for
+			 * (Object value : myMap.values()) { if (!(value instanceof Number)) { valid =
+			 * false; break; } } if (!valid) { System.out.println("校验失败：参数必须为数字类型！");
+			 * JOptionPane.showMessageDialog(this, "参数必须为数字类型！"); return; } // 从Map中获取变量
+			 * String retrievedVariable = (String) myMap.get("key");
+			 * System.out.println(retrievedVariable); // 输出 "example"
+			 */
+
+			double[] arr = new double[22]; //通过数组验证输入参数的合法性
+			//double A=0,B=0,D = 0,H1=0,H2=0,H3=0;
+			arr[0] = A;
+			arr[1] = B;
+			arr[2] = D;
+			arr[3] = H1;
+			arr[4] = H2;
+			arr[5] = H3;
+//			double H0=0,C=0,h1=0,Φ1=0,d=0;
+			arr[6] = H0;
+			arr[7] = C;
+			arr[8] = h1;
+			arr[9] = Φ1;
+			arr[10] = d;
+//			double F = 0,b = 0, φ = 0, γs = 0, k = 0, μ = 0;
+			arr[11] = F;
+			arr[12] = b;
+			arr[13] = φ;
+			arr[14] = γs;
+			arr[15] = k;
+			arr[16] = μ;
+//			double γc = 0, a = 0, ft = 0, βh = 0, Pk = 0;
+			arr[17] = γc;
+			arr[18] = a;
+			arr[19] = ft;
+			arr[20] = βh;
+			arr[21] = Pk;
+
+			try {
+				
+//				固定墩宽度A (m)；
+//				固定墩底板长度B (m)；
+//				固定墩厚度D (m)；
+//				底板厚度H1 (m)；
+//				管心到底板顶距离H2 (m)；
+//				管心到墩顶距离H3 (m)；
+//				A,B,D,H1,H2,H3
+				A = Double.parseDouble(textField1.getText()); // 固定墩宽度A (m)
+				B = Double.parseDouble(textField2.getText()); // 固定墩底板长度B (m)
+				//T = Double.parseDouble(textField3.getText()); // 固定墩厚度D (m)；
+				D = Double.parseDouble(textField3.getText()); // 固定墩厚度D (m)；
+				H1 = Double.parseDouble(textField4.getText()); // 底板厚度H1 (m)；
+				H2 = Double.parseDouble(textField10.getText()); // 管心到底板顶距离H2 (m)；
+				H3 = Double.parseDouble(textField11.getText()); // 管心到墩顶距离H3 (m)；
+				
+//				刃脚高度H0 (m)；
+//				管道中心距C (m)；
+//				管顶覆土厚度h1(m)；
+//				保温管外径Φ (m)；
+//				钢管直径d (mm) 
+//				H0,C,h1,Φ1,d
+				H0 = Double.parseDouble(textField5.getText()); 
+				C = Double.parseDouble(textField6.getText()); 
+				h1 = Double.parseDouble(textField7.getText());
+				Φ1 = Double.parseDouble(textField8.getText());				
+				d = Double.parseDouble(textFielda1.getText()); // 钢管直径d (mm)
+	
+//				双管推力F (kN)；
+//				环板宽度b(mm) (注：环板宽度一般取250mm)
+//				回填土内摩擦角φ º；（注：砂土类内摩擦角为25º，粘土类内摩擦角为30º）；
+//				回填土容重γs (kN/m³)；
+//				被动土压力折减系数k (注：无位移取0.8-0.9，小位移取0.4-0.7)；
+//				回填土与固定墩的摩擦系数μ (注：按照《城镇供热直埋热水管道技术规程》第6.2.2条取用)；
+				
+				F = Double.parseDouble(textField9.getText());
+				b = Double.parseDouble(textField13.getText()); // 环板宽度b(mm) (注：环板宽度一般取250mm)
+				φ = Double.parseDouble(textField14.getText()); // 回填土内摩擦角φ º；，单位：度
+				γs = Double.parseDouble(textField15.getText()); // γs：回填土容重γs (kN/m³)；，单位：kN/m³
+				k = Double.parseDouble(textField16.getText()); // 被动土压力折减系数k (注：无位移取0.8-0.9，小位移取0.4-0.7)；
+				μ = Double.parseDouble(textFielda2.getText());
+		
+//				混凝土容重γc (kN/m³)；
+//				钢筋保护层厚度a (mm)
+//				混凝土轴心抗拉强度设计值ft (N/mm2)（注：C30混凝土，轴心抗拉强度为1.43；C35为1.57；C40为1.71）
+//				截面高度影响系数βh    (注：固定墩厚度≤800mm，取1.0；固定墩厚度≥2000mm，取0.9；其余线性内插)
+//				输入地基承载力特征值  (kPa)
+
+				γc = Double.parseDouble(textField17.getText()); // 混凝土容重γc (kN/m³)；
+				a = Double.parseDouble(textField18.getText());
+				ft = Double.parseDouble(textField19.getText());
+				βh = Double.parseDouble(textField20.getText());
+				Pk = Double.parseDouble(textField12.getText());
+				
+//				A = Double.parseDouble(textField1.getText()); 
+//				T = Double.parseDouble(textField2.getText()); 
+//				H = Double.parseDouble(textField3.getText()); 
+//				C = Double.parseDouble(textField4.getText()); 
+//				h1 = Double.parseDouble(textField10.getText());
+//				Φ1 = Double.parseDouble(textField11.getText());
+				
+//				d = Double.parseDouble(textField7.getText()); // 回填土与固定墩的摩擦系数μ；，单位：无量纲
+//				b = Double.parseDouble(textField8.getText()); // 环板宽度b(mm) (注：环板宽度一般取250mm)
+//
+//				F = Double.parseDouble(textField9.getText()); // 双管推力F (kN)；
+//				φ = Double.parseDouble(textField13.getText()); // 回填土内摩擦角φ º；，单位：度
+//				γs = Double.parseDouble(textField14.getText()); // γs：回填土容重γs (kN/m³)；，单位：kN/m³
+//				k = Double.parseDouble(textField15.getText()); // 被动土压力折减系数k (注：无位移取0.8-0.9，小位移取0.4-0.7)；
+//				μ = Double.parseDouble(textField16.getText());
+//				γc = Double.parseDouble(textField17.getText()); // 混凝土容重γc (kN/m³)；
+//				a = Double.parseDouble(textField18.getText());
+//				ft = Double.parseDouble(textField19.getText());
+//				βh = Double.parseDouble(textField20.getText());
+//				Pk = Double.parseDouble(textField12.getText());
+
+				/*
+				 * arr[0] = A; arr[1] = T; arr[2] = H; arr[3] = C; arr[4] = h1; arr[5] = Φ1;
+				 * arr[6] = d; arr[7] = b;
+				 * 
+				 * arr[8] = F; arr[9] = φ; arr[10] = γs; arr[11] = k; arr[12] = μ; arr[13] = γc;
+				 * arr[14] = a; arr[15] = ft; arr[16] = βh; arr[17] = Pk;
+				 */
+
+			} catch (NumberFormatException ex) {
+				// 处理转换异常
+				System.out.println("Caught exception: " + ex.getMessage());
+				System.out.println("Exception stack trace:");
+				for (int i = 0; i < arr.length; i++) {
+					if (Double.isNaN(arr[i])) {
+						System.out.println("第 " + (i + 1) + " 个变量为空值。");
+					} else {
+						System.out.println("第 " + (i + 1) + " 个变量为 " + arr[i] + "。");
+					}
+					// JOptionPane.showMessageDialog(this,
+					// "参数"+arr[i+2]+"输入异常;"+"请输入全部参数，并且必须为数字类型,保留2位小数");
+					JOptionPane.showMessageDialog(this, "请输入全部参数，并且必须为数字类型,保留2位小数");
+
+					return;
+				}
+			}
+
+			// 使用DecimalFormat将数字四舍五入为2位小数
+			DecimalFormat df = new DecimalFormat("#.00");
+			Font font = new Font("宋体", Font.BOLD, 14);
+
+			// 若：A>(C+Φ+1),则不输出提示语；
+			// 若不满足以上要求，则弹窗输出“固定墩宽度不满足构造要求”
+			if (A < (C + Φ1 + 1)) {
+				JOptionPane.showMessageDialog(this, "固定墩宽度不满足构造要求");
+			} else 
+			if(H2<(Φ1/2+0.5)){
+				JOptionPane.showMessageDialog(this, "管底操作距离不满足构造要求");
+			}
+			else
+			{
+
+				// 固定墩顶部覆土厚度h
+				double h = h1 + Φ1 / 2 - H3;
+				//固定墩总高度H=H1+H2+H3
+				double H = H1 + H2 +H3;
+				
+				//被动土压力Ep=0.5*γs*A*(H+H0)*(2h+H)*tg2(45º+φ/2)
+				//主动土压力Ea=0.5*γs*A*(H+H0)*(2h+H)*tg2(45º-φ/2)
+				double Ep = 0.5 * γs * A * (H+H0) * (2 * h + H + H0) * Math.tan(Math.toRadians(45.0 + φ / 2))
+						* Math.tan(Math.toRadians(45.0 + φ / 2));
+				double Ea = 0.5 * γs * A * (H+H0) * (2 * h + H + H0) * Math.tan(Math.toRadians(45.0 - φ / 2))
+						* Math.tan(Math.toRadians(45.0 - φ / 2));
+				
+				double G1 = γs*(B*(H2+ H3 + h)-D*(H2 + H3))*A;
+				double G2=γc*(D*(H2+H3)+B*H1)*A;
+				double f1 = μ * (G1+G2);
+				double f2 = μ * γs * A * D * h;
+				double f3 = 2 * μ *(Ea*D/A+H1*(B-D)* γs*( H1/2+H2+H3+h)* 
+						Math.tan(Math.toRadians(45.0 + φ / 2))* Math.tan(Math.toRadians(45.0 + φ / 2)));
+				System.out.println("DAYIN"+2 +'*'+ μ+ '*'+(Ea+ '*'+D+ '/'+A+ '+'+H1+ '*'+(B-D)* γs*( H1/2+H2+H3+h)* 
+						Math.tan(Math.toRadians(45.0 + φ / 2))* Math.tan(Math.toRadians(45.0 + φ / 2))));
+				//				System.out.println('2' +'*'+'μ'+'*(Ea'+'*D'+'/'+'A'+'+'+'H1'+'*'+'('+'B'+'-'+'D'+')
+//						'+'*'+' γs'+'*'+'('+' H1'+'/'+'2'+'+'+'H2'+'+'+'H3'+'+'+'h'+')* '+'
+//						Math.tan(Math.toRadians(45.0 + φ / 2))'+'*'+' Math.tan(Math.toRadians(45.0 + φ / 2)))');
+				//被动土压力Ep=0.5*γs*A*H*(2h+H)*tg2(45º+φ/2)
+				//主动土压力Ea=0.5*γs*A*H*(2h+H)*tg2(45º-φ/2)
+				// 计算土压力
+//				double Ep = 0.5 * γs * A * H * (2 * h + H) * Math.tan(Math.toRadians(45.0 + φ / 2))
+//						* Math.tan(Math.toRadians(45.0 + φ / 2));
+//				double Ea = 0.5 * γs * A * H * (2 * h + H) * Math.tan(Math.toRadians(45.0 - φ / 2))
+//						* Math.tan(Math.toRadians(45.0 - φ / 2));
+				
+				//固定墩顶部土重G1=γs*[B*(H+h)-D*H]A=
+				//固定墩自重G2=γc*[D*(H2+H3)+B*H1]A
+				//固定墩底面摩擦力f1=μ*(G1+G2)=
+				//固定墩顶面摩擦力f2=μ*γs*A*D*h=
+				//固定墩侧壁摩擦力f3=2*μ*(Ea*D/A+H1*(B-D)* γs*( H1/2+H2+H3+h)* tg2(45º-φ/2)=
+
+
+				
+				 //固定墩底面摩擦力f1=μ*(γc*A*H*T+γs*A*h*T)=
+				// 固定墩顶面摩擦力f2=μ*γs*A*h*T=
+				// 固定墩侧壁摩擦力f3=2*μ*Ea*T/A=
+				// 计算摩擦力
+//				double f1 = μ * (γc * A * H * T + γs * A * h * T);
+//				double f2 = μ * γs * A * h * T;
+//				double f3 = 2 * μ * Ea * T / A;
+				// 计算抗滑移系数
+				double result = (k * Ep + f1 + f2 + f3) / (F + Ea);
+				// 将double类型的数字格式化为字符串
+				// 将格式化后的字符串转换为double类型
+				String numStr = df.format(result);
+				double Rp = Double.parseDouble(numStr);
+				// 输出计算结果
+				if (Rp < 1.3) {
+					System.out.println("抗滑移系数是" + Rp + ",计算结果<1.3,抗滑移不满足规范要求，重新计算！");
+					textField21.setText("抗滑移系数" + Rp + "<1.3,抗滑移不满足规范要求，重新计算!");
+					textField21.setBackground(color);
+					textField21.setForeground(Color.RED);
+				} else {
+					System.out.println("抗滑移系数是" + Rp + ",若计算结果>=1.3,抗滑移满足规范要求！");
+					textField21.setText("抗滑移系数" + Rp + "≥1.3,抗滑移满足规范要求!");
+					textField21.setBackground(color);
+				}
+
+				
+				
+				//一、	倾覆弯矩：
+				//管道推力产生的倾覆弯矩：MS1=F*(H0+H1+H2)
+				//主动土压力产生的倾覆弯矩：MS2=0.5*γs*A*(H0+H)2*(h+(H0+H)/3)*tg2(45º-φ/2)
+				double MS1 = F*(H0+H1+H2); // 管道推力产生的倾覆弯矩
+				double tg2 = Math.tan(Math.toRadians(45 - φ / 2)); // 计算tg(45 - φ/2)
+				double MS2 = 0.5 * γs * A * Math.pow(H0+H, 2) * (h+(H0+H)/3) * tg2 * tg2; // 主动土压力产生的倾覆弯矩
+				// 计算抗倾覆弯矩
+				//固定墩墩顶土重产生的抗倾覆弯矩：MR1=(G1+G2)*B/2=
+				//被动土压力产生的抗倾覆弯矩：MR2=0.5*γs*A*(H0+H)2*(h+(H0+H)/3)*tg2(45º+φ/2)*k=
+				double MR1 = (G1+G2)*B/2; // 固定墩墩顶土重产生的抗倾覆弯矩
+				double tg3 = Math.tan(Math.toRadians(45 + φ / 2)); // 计算tg(45 + φ/2)
+				double MR2 = 0.5 * γs * A * Math.pow(H0+H, 2) * (h+(H0+H)/3) * tg3 * tg3*k; 
+				// 计算抗倾覆系数				
+				double result2 = (MR1 + MR2 ) / (MS1 + MS2);
+
+				// 计算倾覆弯矩
+				//管道推力产生的倾覆弯矩：MS1=F*H/2=
+				//主动土压力产生的倾覆弯矩：MS2=0.5*γs*A*H2*(h+H/3)*tg2(45º-φ/2)=
+				//double MS1 = F * H / 2; // 管道推力产生的倾覆弯矩
+				//double tg2 = Math.tan(Math.toRadians(45 - φ / 2)); // 计算tg(45 - φ/2)
+				//double MS2 = 0.5 * γs * A * Math.pow(H, 2) * (h + H / 3) * tg2 * tg2; // 主动土压力产生的倾覆弯矩
+				// 计算抗倾覆弯矩
+				//固定墩墩顶土重产生的抗倾覆弯矩：MR1=γs*h*A*T2/2=
+				//固定墩自重产生的抗倾覆弯矩：MR2=γc*H*A*T2/2=
+				//固定墩侧壁摩擦力产生的抗倾覆弯矩：MR3=μ*γs*T*H2*(h+H/3)*tg2(45º-φ/2)=
+				//被动土压力产生的抗倾覆弯矩：MR4= 0.5*γs*A*H2*(h+H/3)*tg2(45º+φ/2)*k=
+
+//				double T2 = Math.pow(T, 2);
+//				double MR1 = γs * h * A * T2 / 2; // 固定墩墩顶土重产生的抗倾覆弯矩
+//				double MR2 = γc * H * A * T2 / 2; // 固定墩自重产生的抗倾覆弯矩
+//				double MR3 = μ * γs * T * Math.pow(H, 2) * (h + H / 3) * tg2 * tg2; // 固定墩侧壁摩擦力产生的抗倾覆弯矩
+//				double tg3 = Math.tan(Math.toRadians(45 + φ / 2)); // 计算tg(45 + φ/2)
+//				double MR4 = 0.5 * γs * A * Math.pow(H, 2) * (h + H / 3) * tg3 * tg3; // 被动土压力产生的抗倾覆弯矩
+				
+				// 计算抗倾覆系数
+				//double result2 = (MR1 + MR2 + MR3 + MR4 * k) / (MS1 + MS2);
+				// 输出计算结果
+				String numStr2 = df.format(result2);
+				double SF = Double.parseDouble(numStr2);
+				if (SF < 1.5) {
+					System.out.println("抗倾覆系数是" + SF + ",若计算结果<1.5,抗倾覆不满足规范要求，重新计算！");
+					textField22.setText("抗倾覆系数" + SF + "<1.5,抗倾覆不满足规范要求,重新计算!");
+					textField22.setBackground(color);
+					textField22.setForeground(Color.RED);
+				} else {
+					System.out.println("抗倾覆系数是" + SF + ",若计算结果>=1.5,抗倾覆满足规范要求！！");
+					textField22.setText("抗倾覆系数" + SF + "≥1.5,抗倾覆满足规范要求!");
+					textField22.setBackground(color);
+				}
+
+				
+				//固定墩抗冲切验算
+				//冲切破坏面周长μm=3.14*(d+2*b+1000*D-2*a) =
+				//η2=0.5+(10000*D-20*a)/μm=
+				//抗冲切影响系数η= min {η1, η2}=
+				//墩体抗冲切力F1= 0.7*βh*ft*η*μm*(500*D-1.5*a)=
+				double mu = 3.14 * (d + 2 * b + 1000 * D - 2 * a); // 冲切破坏面周长
+				double eta1 = 1.00;
+				double eta2 = 0.5 + (10000 * D - 20 * a) / mu; // 抗冲剪影响系数2
+				double eta = Math.min(eta1, eta2); // 抗冲剪影响系数
+				double result3 = 0.7 * βh * ft * eta * mu * (500 * D - 1.5 * a) / 1000; // 墩体抗冲切力
+				// 第三步：固定墩抗冲切验算
+				//冲切破坏面周长μm=3.14*(d+2*b+1000*T-2*a) =
+				//η2=0.5+(10000*T-20*a)/μm=
+				//抗冲切影响系数η= min {η1, η2}=
+				//墩体抗冲切力F1= 0.7*βh*ft*η*μm*(500*T-1.5*a)=
+
+				//double mu = 3.14 * (d + 2 * b + 1000 * T - 2 * a); // 冲切破坏面周长
+				//double eta1 = 1.00;
+				//double eta2 = 0.5 + (10000 * T - 20 * a) / mu; // 抗冲剪影响系数2
+				//double eta = Math.min(eta1, eta2); // 抗冲剪影响系数
+				//double result3 = 0.7 * βh * ft * eta * mu * (500 * T - 1.5 * a) / 1000; // 墩体抗冲切力
+				String numStr3 = df.format(result3);
+				double Fe = Double.parseDouble(numStr3);
+				if (Fe < F) {
+					System.out.println("墩体抗冲切力是" + Fe + ",若墩体抗冲切力<输入的双管推力F,墩体抗冲切不满足规范要求，需要重新计算！");
+					textField23.setText("墩体抗冲切力是" + Fe + "<双管推力F,墩体抗冲切不满足规范要求，重新计算!");
+					textField23.setBackground(color);
+					textField23.setForeground(Color.RED);
+				} else {
+					System.out.println("墩体抗冲切力是" + Fe + ",若墩体抗冲切力>=输入的双管推力F,墩体抗冲切满足规范要求！");
+					textField23.setText("墩体抗冲切力是" + Fe + "≥双管推力F,墩体抗冲切满足规范要求!");
+					textField23.setBackground(color);
+				}
+
+				// 第四步：地基承载力验算
+				// 计算最大压应力
+				double result4 = γs * h + γc * H + ( MR1 + MR2 - MS1 - MS2) / (A * B * B) / 6;
+				//double result4 = γs * h + γc * H + (MR3 + MR4 - MS1 - MS2) / (A * D * D) / 6;
+				// 计算最小压应力
+				double result5 = γs * h + γc * H - ( MR1 + MR2 - MS1 - MS2) / (A * B * B) / 6;
+				//double result5 = γs * h + γc * H - (MR3 + MR4 - MS1 - MS2) / (A * D * D) / 6;
+				System.out.println("γs是" + γs + "--h是" + h + "--γc是" + γc + "--H是" + H + 
+						"--MS1是" + MS1 + "--MS2是" + MS2 + "--A是" + A + "--B是" + B);
+				String numStr4 = df.format(result4);
+				double Px = Double.parseDouble(numStr4);
+				String numStr5 = df.format(result5);
+				double Pmin = Double.parseDouble(numStr5);
+				// 比较最大压应力和规范要求的极限荷载
+				if (Px <= 1.2 * Pk && Pmin >= 0) {
+					System.out.println("PKmax=" + Px + "≤1.2*PK,Pkmin=" + Pmin + ">=0，地基承载力满足规范要求");
+					textField24.setText("Pkmax=" + Px + "≤1.2*Pk,Pkmin=" + Pmin + ">=0，地基承载力满足规范要求");
+					textField24.setBackground(color);
+				} else {
+					if (Px > 1.2 * Pk && Pmin >= 0) {
+						System.out.println("PKmax=" + Px + ">1.2*PK,Pkmin=" + Pmin + ">=0,地基承载力不满足规范要求");
+						textField24.setText("Pkmax=" + Px + ">1.2*Pk,Pkmin=" + Pmin + ">=0,地基承载力不满足规范要求");
+						// textField24.setFont(font);
+						// 设置前景色（也就是字体颜色）
+						textField24.setForeground(Color.RED);
+						textField24.setBackground(color);
+					} else {
+						if (Px > 1.2 * Pk && Pmin < 0) {
+							System.out.println("PKmax=" + Px + ">1.2*PK,Pkmin=" + Pmin + "<0,地基承载力不满足规范要求");
+							textField24.setText("Pkmax=" + Px + ">1.2*Pk,Pkmin=" + Pmin + "<0,地基承载力不满足规范要求");
+							textField24.setForeground(Color.RED);
+							textField24.setBackground(color);
+						} else {
+							if (Px <= 1.2 * Pk && Pmin < 0) {
+								System.out.println("PKmax=" + Px + ">1.2*PK,Pkmin=" + Pmin + "<0,地基承载力不满足规范要求");
+								textField24.setText("Pkmax=" + Px + ">1.2*Pk,Pkmin=" + Pmin + "<0,地基承载力不满足规范要求");
+								textField24.setForeground(Color.RED);
+								textField24.setBackground(color);
+							} else {
+								textField24.setText("计算错误！！");
+								textField24.setForeground(Color.RED);
+								textField24.setBackground(color);
+							}
+						}
+					}
+
+				}
+			}
+		} else if (e.getSource() == clearButton) {
+			
+			//固定墩几何参数
+			textField1.setText("");
+			textField2.setText("");
+			textField3.setText("");
+			textField4.setText("");
+			textField10.setText("");
+			textField11.setText("");
+
+			textField5.setText("");
+			textField6.setText("");
+			textField7.setText("");
+			textField8.setText("");
+			textFielda1.setText("");
+			 //必要计算参数			
+			textField9.setText("");	
+			textField13.setText("");
+			textField14.setText("");
+			textField15.setText("");
+			textField16.setText("");
+			textFielda2.setText("");
+           
+			textField17.setText("");
+			textField18.setText("");
+			textField19.setText("");
+			textField20.setText("");
+			textField12.setText("");
+			//输出结果
+			textField21.setText("");
+			textField22.setText("");
+			textField23.setText("");
+			textField24.setText("");
+
+		}
+	}
+
+	// 将参数转换为数字类型，如果无法转换则抛出NumberFormatException异常
+	public static Number getNumber(Object value) throws NumberFormatException {
+		if (value instanceof String) {
+			return Double.parseDouble((String) value);
+		} else if (value instanceof Character) {
+			return (int) ((Character) value);
+		} else {
+			throw new NumberFormatException();
+		}
+	}
+
+	public static void main(String[] args) {
+		new TshapedPileCalculation();
+	}
+}

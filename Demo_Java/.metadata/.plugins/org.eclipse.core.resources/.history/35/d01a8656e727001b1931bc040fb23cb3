@@ -1,0 +1,99 @@
+//package com.eastmoney;
+//
+//import java.util.Scanner;
+//
+///**
+// * @author: ThinkingLee
+// * @date: 2020/11/4
+// * @desc: Demo启动主程序（参考C#Demo）
+// */
+//public class EmQuantDemo {
+//
+//
+//    public static void main(String[] args) {
+//
+//        QuantCase quantCase = new QuantCase();
+//        quantCase.init();
+//
+//        System.out.println(Constants.OPTIONS);
+//
+//        while (true) {
+//            System.out.println("请输入命令：");
+//
+//            FunctionEnum function = null;
+//            try {
+//                Scanner scanner = new Scanner(System.in);
+//                String input = scanner.next();
+//                function = FunctionEnum.valueOf(input);
+//                System.out.println("调用[" + function.name() + "]函数...");
+//            }catch (Exception e){
+//                System.out.println("您输入的命令异常!");
+//                continue;
+//            }
+//
+//            switch (function) {
+//                case START:
+//                    quantCase.start();
+//                    break;
+//                case STOP:
+//                    quantCase.stop();
+//                    break;
+//                case MA:
+//                    quantCase.testManualactivate();
+//                    break;
+//                case CSD:
+//                    quantCase.testCsd();
+//                    break;
+//                case CSS:
+//                    quantCase.testCss();
+//                    break;
+//                case TD:
+//                    quantCase.testTradedates();
+//                    break;
+//                case GD:
+//                    quantCase.testGetDate();
+//                    break;
+//                case SEC:
+//                    quantCase.testSector();
+//                    break;
+//                case CSQ:
+//                    quantCase.testCsq();
+//                    break;
+//                case CMC:
+//                    quantCase.testCmc();
+//                    break;
+//                case CST:
+//                    quantCase.testCst();
+//                    break;
+//                case CTR:
+//                    quantCase.testCtr();
+//                    break;
+//                case CT:
+//                    quantCase.testCsqsnapshot();
+//                    break;
+//                case CPS:
+//                    quantCase.testCps();
+//                    break;
+//                case PGROUP:
+//                    quantCase.testPgroup();
+//                    break;
+//                case EDB:
+//                    quantCase.testEdb();
+//                    break;
+//                case TDN:
+//                    quantCase.testTradedatesNum();
+//                    break;
+//                case CFN:
+//                    quantCase.testCfn();
+//                    break;
+//                case CNQ:
+//                    quantCase.testCnq();
+//                    break;
+//                default:
+//                    System.out.println("Unknown Function Error");
+//            }
+//        }
+//    }
+//
+//
+//}

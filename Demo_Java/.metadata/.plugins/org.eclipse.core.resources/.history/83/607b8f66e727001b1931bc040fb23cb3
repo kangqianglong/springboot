@@ -1,0 +1,32 @@
+package com.eastmoney;
+
+/**
+ * @author: ThinkingLee
+ * @date: 2020/11/5
+ * @desc: API功能选项提示语
+ */
+public class Constants {
+
+    public static String OPTIONS =
+                    "        START   登录\n" +
+                    "        STOP    登出\n" +
+                    "        MA      激活账户\n" +
+                    "        CSD     获取序列数据\n" +
+                    "        CSS     获取截面数据\n" +
+                    "        TD      获取交易日数据\n" +
+                    "        GD      推算交易日\n" +
+                    "        SEC     获取板块数据\n" +
+                    "        CSQ     订阅实时行情数据\n" +
+                    "        CMC     获取历史分钟K线数据\n" +
+                    "        CST     获取跳价数据\n" +
+                    "        CTR     获取专题报表数据\n" +
+                    "        CT      获取行情快照数据\n" +
+                    "        CPS     获取条件选股数据\n" +
+                    "        PGROUP  组合相关命令\n" +
+                    "        EDB     宏观指标相关命令\n" +
+                    "        TDN     获取交易日总量\n" +
+                    "        CFN     资讯数据相关命令\n" +
+                    "        CNQ     资讯订阅\n";
+
+
+}

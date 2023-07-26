@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;test2.java&apos; to &apos;mybaits-demo/src/main/java/com.sac.demo.controller&apos;&#x0D;&#x0A;- Original project: &apos;demo1&apos;&#x0D;&#x0A;- Destination element: &apos;mybaits-demo/src/main/java/com.sac.demo.controller&apos;&#x0D;&#x0A;- Original element: &apos;com.chris.test2.java&apos;" description="Copy compilation unit" destination="=mybaits-demo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.sac.demo.controller" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.chris{test2.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1690188841645" units="1" version="1.0"/>
+</session>

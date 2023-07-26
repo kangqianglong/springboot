@@ -1,0 +1,25 @@
+package com.sac.demo.service;
+
+import org.springframework.stereotype.Service;
+import com.sac.demo.mapper.UserMapper;
+import com.sac.demo.entity.User;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+//@Service
+@Service("studentSrv")
+public class UserService {
+  @Autowired
+  @Resource(name = "studentMapper")
+  UserMapper userMapper;
+
+  public int insertUser(User user) {
+    return userMapper.insertUser(user);
+  }
+
+  public User getByUserNameAndPassword(User user) {
+    return userMapper.getByUserNameAndPassword(user);
+  }
+}

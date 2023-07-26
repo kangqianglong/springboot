@@ -1,0 +1,15 @@
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@MapperScan("com.sac.demo.mapper")
+/* @MapperScan(basePackages = {"com.study.mapper"}) */
+public class MybaitsDemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MybaitsDemoApplication.class, args);
+	}
+
+}

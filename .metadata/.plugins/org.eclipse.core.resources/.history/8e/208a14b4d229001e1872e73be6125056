@@ -1,0 +1,18 @@
+package com.chris;
+
+import org.springframework.web.bind.annotation.RestController;
+import java.util.Date;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RestController
+@RequestMapping("/system/about")
+public class test2 {
+     @GetMapping(value="/test21")
+     public String axiostest() {
+    	 //使用Date创建日期对象
+    	  Date date=new Date();
+    	 System.out.println("当前的日期是------>"+date+"收到了1---来自后台的请求处理");
+    	 return "nihaoa23232!!@22";
+     }
+}

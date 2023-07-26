@@ -1,0 +1,23 @@
+package com.sac.demo.mapper;
+
+import com.sac.demo.entity.User;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
+
+@Repository
+//@Repository("/studentMapper")
+//@Component
+//@Mapper
+public interface UserMapper {
+   int insertUser(User user);
+   
+   User getByUserNameAndPassword(User user);
+   
+ //获得数据库中Student表的所有数据
+   public List<Map> selectStudentAll();
+}
